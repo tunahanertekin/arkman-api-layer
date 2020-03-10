@@ -71,11 +71,13 @@ namespace ArkmanAPILayer
 
     public class OriginDestinationOption
     {
+        public String Id;
         public PricingInfo PricingInfo;
         public FlightSegment[] FlightSegments;
 
-        public OriginDestinationOption(PricingInfo pricingInfo, FlightSegment[] flightSegments)
+        public OriginDestinationOption(string ıd, PricingInfo pricingInfo, FlightSegment[] flightSegments)
         {
+            Id = ıd;
             PricingInfo = pricingInfo;
             FlightSegments = flightSegments;
         }

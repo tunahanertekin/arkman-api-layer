@@ -7,12 +7,12 @@ namespace ArkmanAPILayer
     public class PaxReference
     {
         public String PaxCode;
-        public String PaxReferenceId;
+        public String PaxReferanceId;
 
-        public PaxReference(string paxCode, string paxReferenceId)
+        public PaxReference(string paxCode, string paxReferanceId)
         {
             PaxCode = paxCode;
-            PaxReferenceId = paxReferenceId;
+            PaxReferanceId = paxReferanceId;
         }
     }
 }

@@ -28,13 +28,13 @@ namespace ArkmanAPILayer
         public String Cvv;
         public String ExpirationYear;
         public String ExpirationMonth;
-        public int ExtraAmount;
+        public double ExtraAmount;
         public String InstallmentId;
         public int InstallmentCount;
         public String Currency;
         public String ReturnUrl;
 
-        public PaymentForm(string cardHolder, string cardNumber, string cardType, string cvv, string expirationYear, string expirationMonth, int extraAmount, string ınstallmentId, int ınstallmentCount, string currency, string returnUrl)
+        public PaymentForm(string cardHolder, string cardNumber, string cardType, string cvv, string expirationYear, string expirationMonth, double extraAmount, string ınstallmentId, int ınstallmentCount, string currency, string returnUrl)
         {
             CardHolder = cardHolder;
             CardNumber = cardNumber;

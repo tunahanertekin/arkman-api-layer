@@ -95,10 +95,13 @@ namespace ArkmanAPILayer
     {
         public String BookingCode;
         public String ControlNumber;
+        public String CorporatePin;
         public String Status;
         public String Provider;
         public PassengerBreakdown[] PassengerBreakdowns;
         public FlightSegment[] FlightSegments;
+        public AirBookingStatus AirBookingStatus;
+        public AirBookingTimeTable AirBookingTimeTable;
         public double BaseFare;
         public double TotalTax;
         public double TotalMarkupFare;
@@ -113,10 +116,11 @@ namespace ArkmanAPILayer
         public String Currency;
         public String FareInfoType;
 
-        public AirBooking(string bookingCode, string controlNumber, string status, string provider, PassengerBreakdown[] passengerBreakdowns, FlightSegment[] flightSegments, double baseFare, double totalTax, double totalMarkupFare, double totalMarkupFareList, double totalServiceFee, double totalFare, double vQ, double yR, double cF, double tR, double vAT, string currency, string fareInfoType)
+        public AirBooking(string bookingCode, string controlNumber, string corporatePin, string status, string provider, PassengerBreakdown[] passengerBreakdowns, FlightSegment[] flightSegments, double baseFare, double totalTax, double totalMarkupFare, double totalMarkupFareList, double totalServiceFee, double totalFare, double vQ, double yR, double cF, double tR, double vAT, string currency, string fareInfoType)
         {
             BookingCode = bookingCode;
             ControlNumber = controlNumber;
+            CorporatePin = corporatePin;
             Status = status;
             Provider = provider;
             PassengerBreakdowns = passengerBreakdowns;

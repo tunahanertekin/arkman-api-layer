@@ -9,9 +9,9 @@ namespace ArkmanAPILayer.Wrappers
         public SessionHeader SessionHeader;
         public String ShoppingCartId;
         public String PaymentType;
-        public int Amount;
+        public double Amount;
 
-        public MakePaymentWrapper(SessionHeader sessionHeader, string shoppingCartId, string paymentType, int amount)
+        public MakePaymentWrapper(SessionHeader sessionHeader, string shoppingCartId, string paymentType, double amount)
         {
             SessionHeader = sessionHeader;
             ShoppingCartId = shoppingCartId;

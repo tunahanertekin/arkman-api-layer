@@ -29,6 +29,7 @@ namespace ArkmanAPILayer
         public String InstallmentOptionId;
         public String BankName;
         public String Currency;
+        public int InstallmentCount;
         public double MontlyPayment;
         public String Program;
         public String ImagePath;
@@ -39,11 +40,12 @@ namespace ArkmanAPILayer
         public double SubTotal;
         public int VirtualPosId;
 
-        public InstallmentOption(string ınstallmentOptionId, string bankName, string currency, double montlyPayment, string program, string ımagePath, string posCode, double rateOfInterest, double amountOfInterest, double remainingSum, double subTotal, int virtualPosId)
+        public InstallmentOption(string ınstallmentOptionId, string bankName, string currency, int ınstallmentCount, double montlyPayment, string program, string ımagePath, string posCode, double rateOfInterest, double amountOfInterest, double remainingSum, double subTotal, int virtualPosId)
         {
             InstallmentOptionId = ınstallmentOptionId;
             BankName = bankName;
             Currency = currency;
+            InstallmentCount = ınstallmentCount;
             MontlyPayment = montlyPayment;
             Program = program;
             ImagePath = ımagePath;

@@ -12,10 +12,9 @@ Arkman Flight API için C# dilinde yazılmış bir API Layer kütüphanesi.
 <br>
 
 <h1>Kullanım (VB.Net)</h1>
-Her isteğin ve geri dönüşün bir Wrapper sınıfı vardır. API ile bütün iletişim bu Wrapper sınıflar ile gerçekleşir. Örneğin uçuş araması yapmak istiyorsak
-istek yollarken bir AirSearchWrapper nesnesinin parametrelerini doldurup `Arkman.AirSearch(airSearchWrapper)` fonksiyonuna yollamalıyız. Bu fonksiyon bize
-bir `APIResponse` nesnesi dönecektir. Bu nesnenin `responseStr` parametresinde dönüş parametreleri String halinde JSON olarak verilir. Bu dönüş mesajını önce
-bir `Newtonsoft.JObject` nesnesi ile JSON objesine çevirip daha sonra bir dönüş Wrapper nesnesine dönüştürmemiz gerekir. Bu örnekte dönüş Wrapper sınıfımız AirSearchResponseWrapper olur.
+
+* Her isteğin ve geri dönüşün bir Wrapper sınıfı vardır. API ile bütün iletişim bu Wrapper sınıflar ile gerçekleşir. 
+* Örneğin uçuş araması yapmak istiyorsak istek yollarken bir AirSearchWrapper nesnesinin parametrelerini doldurup `Arkman.AirSearch(airSearchWrapper)` fonksiyonuna yollamalıyız. Bu fonksiyon bize bir ``APIResponse`` nesnesi dönecektir. Bu nesnenin ``responseStr`` parametresinde dönüş parametreleri String halinde JSON olarak verilir. Dönüş mesajını önce bir ``Newtonsoft.JObject`` nesnesi ile JSON objesine çevirip daha sonra bir dönüş Wrapper nesnesine dönüştürmemiz gerekir. Bu örnekte dönüş Wrapper sınıfımız AirSearchResponseWrapper olur.
 
 <br>
 <br>

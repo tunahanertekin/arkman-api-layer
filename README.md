@@ -20,11 +20,236 @@ bir `Newtonsoft.JObject` nesnesi ile JSON objesine çevirip daha sonra bir dön�
 <br>
 <br>
 
-Arkman'ın altyapısından uçak bileti satın alabilmek için tamamlanması gereken 10 adım vardır:
+Arkman'ın altyapısından uçak bileti satın alabilmek için tamamlanması gereken 8 adım vardır:
 
-*Heyu
-*Meyu
+* Login
+* AirSearch
+* UpdatePassengers
+* MakePrebooking
+* MakePayment
+* EndPayment
+* FinalizeShopping
+* BillingSubmit
 
+Ayrıca her zaman çağırabileceğimiz, girdi olarak ShoppingCartId bekleyen, bize aktif ShoppingCart parametrelerini dönen bir fonksiyon daha vardır:
+
+* GetShoppingCart
+
+Bu 8 fonksiyonun(her biri Arkman Flight API'ye bir Post isteğine tekabül eder) istek ve dönüş parametreleri için yazılmış Wrapper sınıflar vardır:
+
+<hr>
+
+<h2>Login</h2>
+
+- LoginWrapper (request)
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  Username | String | Arkman tarafından verilen kullanıcı adı.
+  Password | String | Arkman tarafından verilen şifre.
+  IsTest | Boolean | Test sırasında ``true`` gönderilmelidir.
+  
+- LoginResponseWrapper
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionId | String | Oluşturulan oturumun ID'si. Bu aşamadan sonraki her istekte kullanılacaktır.
+  SessionToken | String | Oluşturulan oturumun anahtarı. Bu aşamadan sonraki her istekte kullanılacaktır.
+  IsTest | Boolean | Test sırasında ``true`` değeri döner.
+
+<hr>
+
+<hr>
+
+<h2>AirSearch</h2>
+
+- AirSearchWrapper (request)
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionHeader | SessionHeader | Giriş sırasında dönen oturum bilgileri.
+  AirSearchOptions | AirSearchOptions | Aranan uçuşa dair bilgilerin tutulduğu parametre.
+  AirSearchPaxItems | AirSearchPaxItem[] | Arama sırasında girilen farklı yolcu gruplarını ve onların kişi sayılarını tutan dizi parametresi.
+  AirSearchSegments | AirSearchSegment[] | Tarih, çıkış ve varış noktası gibi bilgileri içeren parametre.
+  
+- AirSearchResponseWrapper
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionHeader | SessionHeader | Oturum bilgileri.
+  OriginDestinationOptions | OriginDestinationOption[] | Arama sonucunda dönen uçuş listesi.
+  DirectionInd | int | 0: gidiş, 1: dönüş
+  IsInternational | Boolean | true: Dış hat uçuşları da listelenmiştir.
+  HasError | Boolean | Hata kontrolü.
+
+<hr>
+
+<h2>AirAllocate</h2>
+
+- AirAllocateWrapper (request)
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionHeader | SessionHeader | Oturum bilgileri.
+  AllocateItems | AllocateItem[] | Listelenen uçuşlar arasından seçtiğimiz uçuşun ``ProductId``'sini(veya ilaveten ``PriceId``'sini) yolladığımız parametre.
+  
+- AirAllocateResponseWrapper
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  ShoppingCart | ShoppingCart | Seçilen uçuşa dair birçok bilgiyi içeren 'sepet' parametresi.(Ödeme yöntemleri vs.)
+  HasError | Boolean | Hata Kontrolü.
+
+<hr>
+
+<hr>
+
+<h2>UpdatePassengers</h2>
+
+- UpdatePassengersWrapper (request)
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionHeader | SessionHeader | Oturum bilgileri.
+  CorporatePin | String | THY Corporate anlaşması gibi girilmesi gereken kodlar.
+  ShoppingCartId | String | Sepet ID'si.(Önceki istekte döndü.)
+  Contact | Contact | Bileti/biletleri alacak kişinin iletişim bilgileri.
+  Passengers | Passenger[] | Bileti alan/adına bilet alınan yolcunun/yolcuların bilgileri.
+  
+- UpdatePassengersResponseWrapper
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  ShoppingCart | ShoppingCart | Sepet.
+  HasError | Boolean | Hata Kontrolü.
+
+<hr>
+
+
+<hr>
+
+<h2>MakePrebooking</h2>
+
+- MakePrebookingWrapper (request)
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionHeader | SessionHeader | Oturum bilgileri.
+  ShoppingCartId | String | Sepet ID'si.
+  
+- MakePrebookingResponseWrapper
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  ShoppingCart | ShoppingCart | Sepet.
+  HasError | Boolean | Hata Kontrolü.
+
+<hr>
+
+<h2>MakePayment</h2>
+
+- MakePaymentWrapper (request)
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionHeader | SessionHeader | Oturum bilgileri.
+  ShoppingCartId | String | Sepet ID'si.
+  PaymentType | String | ``CurrentPayment`` ya da ``ThreeDPayment`` olarak gönderilebilir.
+  Amount | Double | Biletin/biletlerin fiyatı.
+  
+- MakePaymentResponseWrapper
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  ShoppingCart | ShoppingCart | Sepet.
+  HasError | Boolean | Hata Kontrolü.
+
+<hr>
+
+<hr>
+
+<h2>EndPayment</h2>
+
+- EndPaymentWrapper (request)
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionHeader | SessionHeader | Oturum bilgileri.
+  ShoppingCartId | String | Sepet ID'si.
+  PaymentType | String | ``CurrentPayment`` ya da ``ThreeDPayment`` olarak gönderilebilir.
+  Amount | Double | Biletin/biletlerin fiyatı.
+  PayableBank | String | Seçilen banka.(ShoppingCart->PaymentOption->InstallmentOptions içindeki BankName)
+  PaymentForm | PaymentForm | Kart ve ödeme bilgileri.
+  
+- EndPaymentResponseWrapper
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  ShoppingCart | ShoppingCart | Sepet.
+  HasError | Boolean | Hata Kontrolü.
+  ServiceError | ServiceError | Hata detayları.
+
+<hr>
+
+<h2>FinalizeShopping</h2>
+
+- FinalizeShoppingWrapper (request)
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionHeader | SessionHeader | Oturum bilgileri.
+  ShoppingCartId | String | Sepet ID'si.
+  
+- FinalizeShoppingResponseWrapper
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  ShoppingCart | ShoppingCart | Sepet.
+  HasError | Boolean | Hata Kontrolü.
+  ServiceError | ServiceError | Hata detayları.
+
+<hr>
+
+<hr>
+
+<h2>BillingSubmit</h2>
+
+- BillingSubmitWrapper (request)
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionHeader | SessionHeader | Oturum bilgileri.
+  ShoppingCartId | String | Sepet ID'si.
+  BillingInformation | BillingInformation | Fatura bilgileri.
+  
+- BillingSubmitResponseWrapper
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  ShoppingCart | ShoppingCart | Sepet.
+  HasError | Boolean | Hata Kontrolü.
+  ServiceError | ServiceError | Hata detayları.
+
+<hr>
+
+<h2>GetShoppingCart</h2>
+
+Bilet satış senaryosu içerisinde ``ShoppingCartId``'ye sahip olunan herhangi bir yerde kullanılabilir.
+
+- GetShoppingCartWrapper (request)
+  
+  Parametre Adı | Tür | Açıklama
+  ------------ | ------------- | -------------
+  SessionHeader | SessionHeader | Oturum bilgileri.
+  ShoppingCartId | String | Sepet ID'si.
+  
+<hr>
+
+
+
+<br>
+<br>
+<br>
 
 - <h2>API Bağlantısı (Login)</h2>
   API kullanımının ilk aşamasıdır. Bu isteğin dönüşünde alınan Session parametreleri sonraki bütün isteklerde kullanılacaktır.

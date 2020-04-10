@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://acentesoft.com/images/acentelogoosiyah.png" height="60" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  <img src="https://lh3.googleusercontent.com/proxy/2AolACWzslhAFNh48fugxRhkYKCwu_8DzuARi8W41LYu0GzR2XMIJgEmPBKYQieRLAT-6_ex8ERICnTKJRIGE1zRd0dsTJC7O2gcCKa98G3CGLEv3dDHRA" height="50" />
+  <img src="https://lh3.googleusercontent.com/proxy/knF22eUNwo_x_RmaYHQ4BL-mXaKz7hyKeqzc--GFXCUBQ83HuzZA7EKMogVxRCCXdRodTjlM8eBazw6KPWcPB7oHfmlp-tGWYI7xpqnK-DUW7vVkUsVKhQ" height="50" />
 </p>
 
 

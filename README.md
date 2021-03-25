@@ -1,6 +1,5 @@
 <p align="center">
   <img src="https://acentesoft.com/images/acentelogoosiyah.png" height="60" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  <img src="https://lh3.googleusercontent.com/proxy/knF22eUNwo_x_RmaYHQ4BL-mXaKz7hyKeqzc--GFXCUBQ83HuzZA7EKMogVxRCCXdRodTjlM8eBazw6KPWcPB7oHfmlp-tGWYI7xpqnK-DUW7vVkUsVKhQ" height="50" />
 </p>
 
 
